@@ -2,6 +2,7 @@ import numpy as np
 import names
 import random
 from collections import OrderedDict, deque, defaultdict
+import play_email as pmail
 
 
 class CustomError(Exception):
@@ -92,8 +93,10 @@ class Player:
         if self.email is None:
             print(text)
         else:
-            #           leave blank here, may or may not to be updated for email use
-            print(text)
+            try:
+                pmail.send_mail([self.email], text, subject=f"Suppress Seven Game {game_id} Round {round_count+1}")
+            except Exception as e:
+                print(text)
 
     def get_hand_cards(self, hand_card):
         for card in hand_card:

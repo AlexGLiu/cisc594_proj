@@ -3,19 +3,25 @@ import names
 import random
 from collections import OrderedDict, deque, defaultdict
 
+
 class CustomError(Exception):
     """Base class for exceptions in this module."""
     pass
+
 
 class CardNumberError(CustomError):
     def __init__(self, message, number):
         self.message = message
         self.number = number
+
     def __str__(self):
         return f"The numer {self.number} is {self.message} than the allowed card number range: 1~52."
+
+
 class CardNumberDisaster(CustomError):
-    def __init__(self,card):
+    def __init__(self, card):
         self.card = card
+
     def __str__(self):
         return f"The card numer {self.card.name()} is illegal."
 
